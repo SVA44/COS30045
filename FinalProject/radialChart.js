@@ -4,34 +4,19 @@ function init() {
         let data = [];
         let features = ['Ancillary services', 'Healthcare system', 'Inpatient rehabilitative care', 'Long-term care', 'Medical goods', 'Outpatient rehabilitative care', 'Preventive care'];
         let countries = [];
+        // Load in countries
         for (var i = 0; i < dataset.length; i ++){
             countries.push(dataset[i].Country);
         }
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     // Define the options
-        //     const options = ['Option 1', 'Option 2', 'Option 3'];
-          
-        //     // Get the select element
-        //     const dropdown = document.getElementById('dropdown');
-          
-        //     // Populate the select element with options
-        //     options.forEach(function(optionText) {
-        //       const option = document.createElement('option');
-        //       option.value = optionText;
-        //       option.textContent = optionText;
-        //       dropdown.appendChild(option);
-        //     });
-        //   });
-        const dropdown = document.getElementById("dropdown");
-        countries = [dropdown.value];
-        console.log(countries);
         let data_point = {};
+        // Load the datapoints
         for (var i = 0; i< dataset.length; i++) {
             if (countries.includes(dataset[i].Country)) {
                 let data_point = {};
                 for (var j = 0; j <features.length; j++) {
                     data_point[features[j]] = dataset[i][features[j]] / 5;
                 }
+                data_point.Country = dataset[i].Country;
                 data.push(data_point);
             }
         }
@@ -41,10 +26,10 @@ function init() {
         let radius = 300;
         let width = radius * 2;
         let height = radius * 2;
-        let margin = 100;
+        let margin = {"left": 200, "top":100};
         let svg = d3.select("#radialChart").append("svg")
-                .attr("width", width + margin)
-                .attr("height", height + margin);
+                .attr("width", width + margin.left)
+                .attr("height", height + margin.top);
         let radialScale = d3.scaleLinear()
                         .domain([0, 10])
                         .range([0, 250])
@@ -83,7 +68,10 @@ function init() {
                       .attr("x2", d => d.line_coord.x)
                       .attr("y2", d => d.line_coord.y)
                       .attr("stroke","black")
-            );
+            )
+            .append("g")
+            .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
 
     // draw axis label
         svg.selectAll(".axislabel")
@@ -97,30 +85,72 @@ function init() {
         let line = d3.line()
                 .x(d => d.x)
                 .y(d => d.y)
-        let colors = ["green", "red", "blue"];
+
+    // A color scale: one color for each group
+        var myColor = d3.scaleOrdinal()
+          .domain(countries)
+          .range(d3.schemeDark2);
+
+        console.log(d3.schemeSet2)
         function getPathCoordinates(data_point) {
             let coordinates = [];
             for (var i = 0; i < features.length; i ++) {
                 let ft = features[i];
                 let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
-                coordinates.push(angleToCoordinate(angle, data_point[ft]));
+                let coords = angleToCoordinate(angle, data_point[ft]);
+                coordinates.push({"Country": data_point.Country, "x": coords.x, "y": coords.y});
             }
             return coordinates;
         }
-    
-    // draw the path element
-        svg.selectAll("path")
-        .data(data)
-        .join(
-            enter => enter.append("path")
-                    .datum(d => getPathCoordinates(d))
-                    .attr("d", line)
-                    .attr("stroke-width", 3)
-                    .attr("stroke", (_, i) => colors[i])
-                    .attr("fill", (_, i) => colors[i])
-                    .attr("stroke-opacity", 1)
-                    .attr("opacity", 0.5)
-        );
+
+    // add the options to the button
+        d3.select("#dropdown")
+            .selectAll('myOptions')
+            .data(countries)
+            .enter()
+            .append('option')
+            .text(function (d) { return d; }) // text showed in the menu
+            .attr("value", function (d) { return d; }) // corresponding value returned by the button
+        
+    // Set up radial chart
+        var radio = svg.append("path")
+                        .datum(getPathCoordinates(data[0]))
+                        .attr("d", line)
+                        .attr("stroke-width", 3)
+                        .attr("stroke", (d) => myColor(d.Country))
+                        .attr("fill", (d) => myColor(d.Country))
+                        .attr("stroke-opacity", 1)
+                        .attr("opacity", 0.5) 
+
+    // Update the chart
+        function update(selectedOption) {
+            console.log(selectedOption);
+            var dataFilter = data.filter(function(d){ 
+                if (d.Country === selectedOption){
+                    return d;
+                }
+            });
+            console.log(dataFilter[0]);
+            console.log(dataFilter[0].Country, myColor(dataFilter[0].Country))
+            radio
+                .datum(getPathCoordinates(dataFilter[0]))
+                .transition()
+                .duration(1000)
+                        .attr("d", line)
+                        .attr("stroke-width", 3)
+                        .attr("stroke", (d) => myColor(dataFilter[0].Country))
+                        .attr("fill", (d) => myColor(dataFilter[0].Country))
+                        .attr("stroke-opacity", 1)
+                        .attr("opacity", 0.5) 
+            }
+
+    // When the button is changed, run the updateChart function
+        d3.select("#dropdown").on("change", function(d) {
+    // recover the option that has been chosen
+        var selectedOption = d3.select(this).property("value");
+    // run the updateChart function with this selected option
+        update(selectedOption);
+        })
 
     })
 }
