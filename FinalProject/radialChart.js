@@ -1,19 +1,41 @@
 function init() {
     //code goes here!
-    d3.csv("Sample Health Expenditure.csv").then(function(dataset) {
+    d3.csv("Health Expenditure_v2.csv").then(function(dataset) {
         let data = [];
-        let features = [];
+        let features = ['Ancillary services', 'Healthcare system', 'Inpatient rehabilitative care', 'Long-term care', 'Medical goods', 'Outpatient rehabilitative care', 'Preventive care'];
         let countries = [];
-        let data_point = {};
-        // Read in the data
-        for (var i = 0; i < dataset.length;i ++) {
-            features.push(dataset[i].Function);
+        for (var i = 0; i < dataset.length; i ++){
             countries.push(dataset[i].Country);
-            data_point[dataset[i].Function] = Number(dataset[i].Value) / 5
         }
-        countries = [...new Set(countries)];
-        features  = [...new Set(features)];
-        data.push(data_point);
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     // Define the options
+        //     const options = ['Option 1', 'Option 2', 'Option 3'];
+          
+        //     // Get the select element
+        //     const dropdown = document.getElementById('dropdown');
+          
+        //     // Populate the select element with options
+        //     options.forEach(function(optionText) {
+        //       const option = document.createElement('option');
+        //       option.value = optionText;
+        //       option.textContent = optionText;
+        //       dropdown.appendChild(option);
+        //     });
+        //   });
+        const dropdown = document.getElementById("dropdown");
+        countries = [dropdown.value];
+        console.log(countries);
+        let data_point = {};
+        for (var i = 0; i< dataset.length; i++) {
+            if (countries.includes(dataset[i].Country)) {
+                let data_point = {};
+                for (var j = 0; j <features.length; j++) {
+                    data_point[features[j]] = dataset[i][features[j]] / 5;
+                }
+                data.push(data_point);
+            }
+        }
+        console.log(dataset);
 
         // Set up canvas
         let radius = 300;
@@ -75,7 +97,7 @@ function init() {
         let line = d3.line()
                 .x(d => d.x)
                 .y(d => d.y)
-        let colors = ["darkgreen", "gray", "navy"];
+        let colors = ["green", "red", "blue"];
         function getPathCoordinates(data_point) {
             let coordinates = [];
             for (var i = 0; i < features.length; i ++) {
