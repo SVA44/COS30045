@@ -67,3 +67,40 @@ a, a:visited, a:active {
 .footer {
   text-align: center;
 }
+
+.legend {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  fill: black;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
+}
+
+#selectButton {
+  position: absolute;
+  top: 20px; /* Adjust the top position */
+  right: 20px; /* Adjust the right position */
+  padding: 8px 12px; /* Add some padding */
+  font-size: 14px; /* Adjust the font size */
+  background-color: transparent; /* Transparent background */
+  color: #007bff; /* Text color to match your design */
+  border: 1px solid #007bff; /* Border color to match your design */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/* Style for the ticks */
+.axis .tick line {
+  stroke: #000;
+}
+
+/* Style for the tick labels */
+.axis text {
+  font-family: sans-serif;
+  font-size: 10px;
+}
