@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="ScatterPlotChart.js"></script>
-    </head>
-    <body>
-        <p id="ScatterPlotChart"></p>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Scatter Plot with Slider</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src=https://unpkg.com/d3-simple-slider@2.0.0/dist/d3-simple-slider.min.js></script>
+    <style>
+        /* Style for the tooltip */
+        #tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 8px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* Container for the scatter plot and controls */
+        #container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Container for the scatter plot */
+        #scatterPlot {
+            flex-grow: 1;
+        }
+
+        /* Checkbox list */
+        #countryCheckboxes {
+            margin-left: 20px;
+            max-height: 600px; /* Adjust this value as needed */
+            overflow-y: auto;  /* Enable vertical scrolling */
+        }
+        /* Slider */
+        #sliderContainer {
+            margin: 20px;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="scatterPlot">
+            <svg width="800" height="600"></svg>
+        </div>
+            <div id="sliderContainer"></div>
+            <div id="countryCheckboxes">
+                <!-- Country checkboxes will be populated here -->
+        </div>
+    </div>
+    <div id="tooltip"></div>
+    <script src="ScatterPlot.js"></script>
+</body>
 </html>
