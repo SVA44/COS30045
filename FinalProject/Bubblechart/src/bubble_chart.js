@@ -1,3 +1,18 @@
+// Load data from csv file and call the display function
+d3.csv('data/country.csv', display);  
+
+// Calls bubble chart function to display inside #vis div.
+function display(error, data) {
+  if (error) {
+    console.log(error);
+  }
+ 
+  myBubbleChart('#vis', data);
+}
+
+var myBubbleChart = bubbleChart();
+
+// Main code that creates bubble chart
 function bubbleChart() {
   
   // Sizing constants
@@ -57,8 +72,7 @@ function bubbleChart() {
     .friction(0.9);
 
 
-  // Size of bubbles is based on the radius
-  // rather than the size
+  // Scale radius of bubble
   var radiusScale = d3.scale.pow()
     .exponent(0.728)
     .range([2, 80]);
@@ -67,7 +81,7 @@ function bubbleChart() {
   // This function takes raw data from csv file
   // and use map
   function createNodes(rawData) {
-    // Use map() to convert raw data into node data.
+    // map() is used to convert raw data into node data.
     var myNodes = rawData.map(function (d) {
      
 
@@ -92,26 +106,17 @@ function bubbleChart() {
       return myNodes;
     }
 
-  /*
-   * Main entry point to the bubble chart. This function is returned
-   * by the parent closure. It prepares the rawData for visualization
-   * and adds an svg element to the provided selector and starts the
-   * visualization creation process.
-   *
-   * selector is expected to be a DOM element or CSS selector that
-   * points to the parent element of the bubble chart. Inside this
-   * element, the code will add the SVG continer for the visualization.
-   *
-   * rawData is expected to be an array of data objects as provided by
-   * a d3 loading function like d3.csv.
-   */
+  // selector is a DOM element or CSS selector that points to the
+  // parent element of chart. It uses rawData and add SVG element
+  // to create visualization. rawData is an array of objects.
+  
   var chart = function chart(selector, rawData) {
-    // Use the max year_2022 in the data as the max in the scale's domain
-    // note we have to ensure the year_2022 is a number by converting it
-    // with `+`.
+    // Set up the domain for radiusScale by utilizing maximum value
+    // of year_2022
     var maxAmount = d3.max(rawData, function (d) { return +d.year_2022; });
     radiusScale.domain([0, maxAmount]);
 
+    // Set up fillColor to generate color gradient for %increase
     var fillColor = d3.scale.quantize()
     .range(["#eff3ff","#bdd7e7","#6baed6", "#3182bd","#08519c"])
     .domain([
@@ -119,6 +124,7 @@ function bubbleChart() {
       d3.max(rawData, function(d) {return d.increase;})
     ]);
 
+    // Set up the filter button
     var allGroup = d3.map(rawData, function(d){return(d.country)}).keys();
         d3.select("#selectButton")
         .selectAll('myOptions')
@@ -128,30 +134,23 @@ function bubbleChart() {
         .text(function (d) { return d; }) // text showed in the menu
         .attr("value", function (d) { return d; }) // corresponding value returned by the button
     
-    
-
-  
-  
-  
-
+    // Call the function createNodes
     nodes = createNodes(rawData);
     // Set the force's nodes to our newly created nodes array.
     force.nodes(nodes);
 
     // Create a SVG element inside the provided selector
-    // with desired size.
     svg = d3.select(selector)
       .append('svg')
       .attr('width', width)
       .attr('height', height);
 
-    // Bind nodes data to what will become DOM elements to represent them.
+    // Node data are bind to DOM elements that represent them
     bubbles = svg.selectAll('.bubble')
       .data(nodes, function (d) { return d.id; });
 
-    // Create new circle elements each with class `bubble`.
-    // There will be one circle.bubble for each object in the nodes array.
-    // Initially, their radius (r attribute) will be 0.
+    // Circle bubbles will be created for each data nodes
+    // in array, which have the id of bubble.
     bubbles.enter().append('circle')
       .classed('bubble', true)
       .attr('r', 0)
@@ -169,6 +168,8 @@ function bubbleChart() {
       .on("drag", dragged)
       .on("dragend", dragended));
 
+      // 3 functions below are used to
+      // create dragging interactivity
       function dragstarted(d) {
         if (!force.alpha()) {
           force.alpha(0.03); 
@@ -176,18 +177,15 @@ function bubbleChart() {
         } 
         d.px = d.x;
         d.py = d.y;
-    }
+      }
   
       function dragged(d) {
-        // d.px = d3.event.x;
-        // d.py = d3.event.y;
         d.x = d3.event.x;
         d.y = d3.event.y;
         force.resume(); 
       }
   
       function dragended(d) {
-        // d.fixed = false;
         if (!force.alpha()) {
             force.alpha(5);
         }
@@ -195,9 +193,8 @@ function bubbleChart() {
         d.py = d.y;
     }
 
-    // Fancy transition to make bubbles appear, ending with the
-    // correct radius
-  
+  // Bubbles appear with correct radius with
+  // fancy transition
     bubbles.transition()
       .duration(2000)
       .attr('r', function (d) { return d.radius; });
@@ -205,20 +202,16 @@ function bubbleChart() {
     // Set up initial layout for bubbles
     groupBubbles();
 
-    // Dropbox
+    // Return the country selected and call update function
     d3.select("#selectButton").on("change", function(d) {
-      // recover the option that has been chosen
       var selectedOption = d3.select(this).property("value")
-      // run the updateChart function with this selected option
       update(selectedOption)
     })
 
     function update(selectedGroup) {
       // Filter the rawData based on the selected group
       var dataFilter = rawData.filter(function(d) { return d.country == selectedGroup });
-    
- 
-    
+  
       // Transition only the filtered bubbles to red
       bubbles.filter(function(d) {
           return dataFilter.some(function(filtered) { return filtered.id === d.id; });
@@ -233,7 +226,7 @@ function bubbleChart() {
     }
   };
 
-
+  // Set up initial layout
   function groupBubbles() {
     hidecontinents();
 
@@ -252,22 +245,7 @@ function bubbleChart() {
     
   }
 
-
-
-  /*
-   * Helper function for "single group mode".
-   * Returns a function that takes the data for a
-   * single node and adjusts the position values
-   * of that node to move it toward the center of
-   * the visualization.
-   *
-   * Positioning is adjusted by the force layout's
-   * alpha parameter which gets smaller and smaller as
-   * the force layout runs. This makes the impact of
-   * this moving get reduced as each node gets closer to
-   * its destination, and so allows other forces like the
-   * node's charge force to also impact final location.
-   */
+  // Push all bubbles to center of the chart
   function moveToCenter(alpha) {
     return function (d) {
       d.x = d.x + (center.x - d.x) * damper * alpha;
@@ -294,20 +272,14 @@ function bubbleChart() {
     force.start();
   }
 
-  /*
-   * Helper function for "split by continent mode".
-   * Returns a function that takes the data for a
-   * single node and adjusts the position values
-   * of that node to move it the continent center for that
-   * node.
-   *
-   * Positioning is adjusted by the force layout's
-   * alpha parameter which gets smaller and smaller as
-   * the force layout runs. This makes the impact of
-   * this moving get reduced as each node gets closer to
-   * its destination, and so allows other forces like the
-   * node's charge force to also impact final location.
-   */
+   
+  //  Positioning is adjusted by the force layout's
+  //  alpha parameter which gets smaller and smaller as
+  //  the force layout runs. This makes the impact of
+  //  this moving get reduced as each node gets closer to
+  // its destination, and so allows other forces like the
+  //  node's charge force to also impact final location.
+   
   function moveTocontinents(alpha) {
     return function (d) {
       var target = continentCenters[d.continent];
@@ -316,30 +288,25 @@ function bubbleChart() {
         d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
       } else {
         console.log("Invalid continent:", d.continent);
-        // Handle the error gracefully, such as setting default coordinates
-        // or skipping the movement for this data point.
+        // Keep track of things if going wrong
       }
     };
   }
 
-  /*
-   * Hides continent title displays.
-   */
+  
+  // hide continents title when in all expenditure mode
   function hidecontinents() {
     svg.selectAll('.continent').remove();
   }
   
+  // hide legends when in continents mode
   function hidelegend() {
     svg.selectAll('.legend').remove();
     svg.selectAll('.average').remove();
   }
 
-  /*
-   * Shows continent title displays.
-   */
+  // shows continents
   function showcontinents() {
-    // Another way to do this would be to create
-    // the continent texts once and then just hide them.
     var continentsData = d3.keys(continentsTitleX);
     var continents = svg.selectAll('.continent')
       .data(continentsData);
@@ -352,12 +319,9 @@ function bubbleChart() {
       .text(function (d) { return d; });
   }
 
-  function showlegend() {    
-
-
-      
-
-
+  // show legend when in all expenditure mode
+  function showlegend() {   
+    // sizing for size legends 
     const size = d3.scale.pow()
         .domain([
             0,
@@ -365,8 +329,8 @@ function bubbleChart() {
         ])  
         .range([2, 80]);  
 
-  
-
+    // Add size legends including circles,
+    // segments and text
     svg
       .append("circle")
       .attr("class", "legend")
@@ -375,7 +339,6 @@ function bubbleChart() {
       .attr("r", size(4986))
       .style("fill", "green")
       .attr("stroke", "black")
-      // .attr("stroke-dasharray", "5,5");
 
     svg.append("line")
       .attr("class", "average")
@@ -389,12 +352,12 @@ function bubbleChart() {
     svg
       .append("text")
       .attr("class", "average")
-      .attr("x", 1350) // Position text to the right of the circle
-      .attr("y", 300 + 5) // Slightly adjust the y position to align vertically with the circle
+      .attr("x", 1350) 
+      .attr("y", 300 + 5) 
       .text("4986$")
       .style("text-anchor", "start")
       .style("font-size", "11px")
-      .style("font-family", "Arial") // Change the font family here
+      .style("font-family", "Arial") 
       .style("fill", "grey");
 
       svg
@@ -405,17 +368,19 @@ function bubbleChart() {
       .text("Average of \n health expenditure \n per capita 2022")
       .style("text-anchor", "middle")
       .style("font-size", "13px")
-      .style("font-family", "Arial") // Change the font family here
+      .style("font-family", "Arial") 
       .style("fill", "#555555");
 
-
+    // Constants for making size legends
     var valuesToShow = [1000, 5000, 10000]
     var xCircle = 100
     var xLabel = 200
     var yCircle = 330
 
   
-
+    // Create visualization for size legends
+    // including circle, description, segments
+    // and value text
     svg
       .selectAll('.legendCircle')
       .data(valuesToShow)
@@ -446,9 +411,6 @@ function bubbleChart() {
     .attr("dy", "1.2em") 
     .text("health expenditure per capita in 2022");
 
-    
-
-    // Add legend: segments
     svg
       .selectAll('.legendSegment')
       .data(valuesToShow)
@@ -462,7 +424,6 @@ function bubbleChart() {
         .attr('stroke', 'black')
         .style('stroke-dasharray', ('2,2'))
 
-    // Add legend: labels
     svg
       .selectAll('.legendText')
       .data(valuesToShow)
@@ -477,7 +438,8 @@ function bubbleChart() {
         .style("font-size", 10)
         .attr('alignment-baseline', 'middle')
 
-    //Append a defs (for definition) element to your SVG
+    //Create visualization for color gradient legends
+    // including rectangle, text and description
     var defs = svg.append("defs");
 
     //  Append a linearGradient element to the defs and give it a unique id
@@ -552,10 +514,7 @@ function bubbleChart() {
 
 };
 
-  /*
-   * Function called on mouseover to display the
-   * details of a bubble in the tooltip.
-   */
+  // Show detail of bubble when mousing over
   function showDetail(d) {
     // change outline to indicate hover state.
     d3.select(this)
@@ -574,9 +533,7 @@ function bubbleChart() {
     tooltip.showTooltip(content, d3.event);
   }
 
-  /*
-   * Hides tooltip
-   */
+  // Hide tooltip
   function hideDetail(d) {
     // reset outline
     d3.select(this)
@@ -588,72 +545,11 @@ function bubbleChart() {
   }
   
 
-  function clickbubble(event, d) {
-    // console.log(d.healthExpenditure);
-
-    var xScale = d3.scale.linear()
-                  .domain([2015,2022])
-                  .range([1150,1400]);
-
-    var yScale = d3.scale.linear()
-                    .domain([1000,
-                    12000]).range([400, 150])
-
-
-    var xAxis = d3.svg.axis()
-                  .scale(xScale)
-                  .orient("bottom")
-                  .ticks(6)  // Set the number of ticks
-                  .tickFormat(d3.format("d"));
-
-    svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + 400 + ")") 
-        .call(xAxis);
-
-
-    var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .orient("left")
-        .ticks(5)  // Set the number of ticks
-        // .tickFormat(d3.format("d"));
-
-
-    // Append the y-axis to the SVG
-    svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(" + 1150 + ",0)")
-        .call(yAxis);        
-    
-        var healthExpenditureData = d.id;
-
-        // Check if healthExpenditureData is properly defined and has a length
-        if (healthExpenditureData && healthExpenditureData.length > 0) {
-            // Append a new path element for the line chart
-            var line = svg.append('g')
-                .append("path")
-                .datum(healthExpenditureData)
-                .attr("d", d3.line()
-                    .x(function(_, i) { return xScale(i + 2015); }) // Assuming 2015 is the start year
-                    .y(function(d) { return yScale(+d); }) // Assuming d is the health expenditure value
-                );
-        } else {
-            console.error('Health expenditure data is missing or empty.');
-        }
-    }
-    
-    
   
-
-  
-
-  /*
-   * Externally accessible function (this is attached to the
-   * returned chart function). Allows the visualization to toggle
-   * between "single group" and "split by continent" modes.
-   *
-   * displayName is expected to be a string and either 'continent' or 'all'.
-   */
+  //  Externally accessible function which allows the visualization to toggle
+  //  between "single group" and "split by continent" modes.
+  //  displayName is expected to be a string and either 'continent' or 'all'.
+   
   chart.toggleDisplay = function (displayName) {
     if (displayName === 'continent') {
       splitBubbles();
@@ -662,33 +558,12 @@ function bubbleChart() {
     }
   };
 
-
-  // return the chart function from closure.
+  // Call chart function from closure
   return chart;
 }
 
-/*
- * Below is the initialization code as well as some helper functions
- * to create a new bubble chart instance, load the data, and display it.
- */
 
-var myBubbleChart = bubbleChart();
-
-/*
- * Function called once data is loaded from CSV.
- * Calls bubble chart function to display inside #vis div.
- */
-function display(error, data) {
-  if (error) {
-    console.log(error);
-  }
  
-  myBubbleChart('#vis', data);
-}
-
-/*
- * Sets up the layout buttons to allow for toggling between view modes.
- */
 function setupButtons() {
   d3.select('#toolbar')
     .selectAll('.button')
@@ -710,12 +585,8 @@ function setupButtons() {
     });
 }
 
-
-
-/*
- * Helper function to convert a number into a string
- * and add commas to it to improve presentation.
- */
+// Convert number to string and add commas
+// to improve presentation
 function addCommas(nStr) {
   nStr += '';
   var x = nStr.split('.');
@@ -729,11 +600,4 @@ function addCommas(nStr) {
   return x1 + x2;
 }
 
-
-
-// Load the data.
-d3.csv('data/country.csv', display);
-
-// setup the buttons.
 setupButtons();
-// lib/d3.js
