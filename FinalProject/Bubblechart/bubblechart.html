@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bubble Chart - vallandingham.me</title>
+  <meta name="description" content="Data Visualization Final Project">
+  <meta name="author" content="Andrew Tran">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/bubble_chart.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <select id="selectButton"></select>
+  <style>
+    p {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            padding-left: 20px;
+            padding-bottom:100px;
+            padding-top:20px;
+            line-height: 1.6;   
+            text-align: justify;
+    }
+
+    h2 {
+      padding-top: 100px;
+      padding-left: 20px
+    }
+
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Health Expenditure by OECD countries in 2022</h1>
+    <div id="toolbar">
+      <a href="#" id="all" class="button active">All Expenditure</a>
+      <a href="#" id="continent" class="button">Expenditure by Continents</a>
+    </div>
+    <div id="vis"></div>
+   
+    
+
+   
+  </div>
+
+  <script src="lib/d3.js"></script>
+  <script src="src/tooltip.js"></script>
+  <script src="src/bubble_chart.js"></script>
+  
+  <h2>About</h2>
+
+  <p>Health expenditure is an indicator of how commited each country is towards healthcare provision, 
+    demonstrating the resources they allocate to <br> guarantee the welfare of their populations. 
+    Dive into the world of healthcare spending with this interactive bubble chart showcasing OECD countries <br>  in 2022. Hover over 
+    each bubble to reveal in-depth information, tap 
+    into the filter button to highlight specific countries, or drag and drop to explore <br> the data your way. Click through 
+    different windows to unlock new visualizations and reveal a wealth of insights waiting to be discovered!
+    
+  
+
+
+</body>
+</html>
