@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.content {
+    padding: 20px;
+    padding-top: 60px; /* Ensure enough space for the fixed navbar */
+}
+
+.bubblecontainer h1 {
+    padding-top: 80px; /* Ensure enough space for the fixed navbar */
+}
+
+#selectButton {
+    margin-top: 40px; /* Add some margin to separate from other elements */
+    margin-right: 500px;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+h2 {
+    padding-top: 20px;
+}
