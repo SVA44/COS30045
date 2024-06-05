@@ -65,14 +65,27 @@
     
     <!-- Scatterplot Chart -->
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <div id="scattercontainer">
+    <script src="https://unpkg.com/d3-simple-slider@2.0.0/dist/d3-simple-slider.min.js"></script>
+    <link rel="stylesheet" href="ScatterPlot.css">
+</head>
+<body>
+    <div id="container">
         <div id="scatterPlot">
-            <svg width="800" height="600"></svg>
+            <svg width="700" height="500"></svg>
         </div>
-            <div id="sliderContainer"></div>
-            <div id="countryCheckboxes">
-                <!-- Country checkboxes will be populated here -->
+        <div id="countryCheckboxes">
+            <h3 class="sticky-header">Select Countries</h3>
+            <div class="checkbox-container"></div>
         </div>
+    </div>
+    <div id="sliderAndNote">
+        <div id="sliderContainer"></div>
+        <div id="continentNote"></div>
+    </div>
+    
+    
+    <div id="tooltip"></div>
+    <script src="ScatterPlot.js"></script>
     </div>
     
     <!-- Radial Spider Chart -->
