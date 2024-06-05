@@ -1,0 +1,260 @@
+Value,LifeExpectancy,Year,Country,Continent
+4776.158,82.7,2015,Australia,Oceania
+5037.266,82.9,2016,Australia,Oceania
+5074.653,83.0,2017,Australia,Oceania
+5190.886,83.4,2018,Australia,Oceania
+5126.653,83.1,2019,Australia,Oceania
+5692.402,84.3,2020,Australia,Oceania
+6225.535,84.5,2021,Australia,Oceania
+4943.516,81.2,2015,Austria,Europe
+5195.532,81.6,2016,Austria,Europe
+5315.355,81.6,2017,Austria,Europe
+5518.538,81.7,2018,Austria,Europe
+5625.442,81.9,2019,Austria,Europe
+5863.664,81.5,2020,Austria,Europe
+6690.093,81.6,2021,Austria,Europe
+4817.917,80.9,2015,Belgium,Europe
+5013.354,81.3,2016,Belgium,Europe
+5143.526,81.4,2017,Belgium,Europe
+5350.974,81.5,2018,Belgium,Europe
+5423.676,81.8,2019,Belgium,Europe
+5509.054,80.8,2020,Belgium,Europe
+6022.253,81.9,2021,Belgium,Europe
+4633.159,81.9,2015,Canada,North America
+5043.699,82.0,2016,Canada,North America
+5171.553,82.0,2017,Canada,North America
+5337.4,82.1,2018,Canada,North America
+5222.644,82.4,2019,Canada,North America
+5879.075,82.0,2020,Canada,North America
+6277.503,82.7,2021,Canada,North America
+1940.411,77.7,2015,Estonia,Europe
+2096.544,77.8,2016,Estonia,Europe
+2201.474,78.0,2017,Estonia,Europe
+2364.073,78.1,2018,Estonia,Europe
+2453.074,78.7,2019,Estonia,Europe
+2731.011,78.3,2020,Estonia,Europe
+3073.593,77.1,2021,Estonia,Europe
+4719.382,80.7,2015,Denmark,Europe
+4894.079,80.9,2016,Denmark,Europe
+5112.959,81.1,2017,Denmark,Europe
+5306.704,81.0,2018,Denmark,Europe
+5359.776,81.4,2019,Denmark,Europe
+5697.193,81.5,2020,Denmark,Europe
+6372.074,81.4,2021,Denmark,Europe
+5299.105,80.6,2015,Germany,Europe
+5673.733,80.8,2016,Germany,Europe
+5976.472,80.9,2017,Germany,Europe
+6290.078,81.2,2018,Germany,Europe
+6418.323,81.6,2019,Germany,Europe
+6945.909,81.1,2020,Germany,Europe
+7518.153,80.6,2021,Germany,Europe
+6258.916,82.8,2015,Switzerland,Europe
+6547.904,83.4,2016,Switzerland,Europe
+6518.816,83.4,2017,Switzerland,Europe
+6601.596,83.6,2018,Switzerland,Europe
+6708.349,83.8,2019,Switzerland,Europe
+7022.378,83.1,2020,Switzerland,Europe
+7582.184,84.0,2021,Switzerland,Europe
+1382.59,79.1,2015,Costa Rica,North America
+1413.267,79.5,2016,Costa Rica,North America
+1445.438,79.4,2017,Costa Rica,North America
+1529.721,79.5,2018,Costa Rica,North America
+1556.168,79.4,2019,Costa Rica,North America
+1617.823,79.3,2020,Costa Rica,North America
+1670.558,77.0,2021,Costa Rica,North America
+3019.529,82.6,2015,Spain,Europe
+3148.656,83.0,2016,Spain,Europe
+3317.92,83.0,2017,Spain,Europe
+3427.322,83.1,2018,Spain,Europe
+3528.382,83.5,2019,Spain,Europe
+3715.968,82.3,2020,Spain,Europe
+4086.783,83.0,2021,Spain,Europe
+1035.02,76.3,2015,Colombia,South America
+1101.628,76.5,2016,Colombia,South America
+1139.442,76.6,2017,Colombia,South America
+1191.885,76.7,2018,Colombia,South America
+1239.66,76.8,2019,Colombia,South America
+1293.223,74.8,2020,Colombia,South America
+1532.348,72.8,2021,Colombia,South America
+3992.493,81.4,2015,Finland,Europe
+4103.554,81.3,2016,Finland,Europe
+4215.309,81.5,2017,Finland,Europe
+4330.443,81.6,2018,Finland,Europe
+4383.634,81.9,2019,Finland,Europe
+4614.556,81.9,2020,Finland,Europe
+5251.501,82.0,2021,Finland,Europe
+4309.173,81.4,2015,Ireland,Europe
+4553.266,81.6,2016,Ireland,Europe
+4682.722,81.9,2017,Ireland,Europe
+4876.91,82.1,2018,Ireland,Europe
+4976.129,82.3,2019,Ireland,Europe
+5378.183,82.5,2020,Ireland,Europe
+5860.738,82.0,2021,Ireland,Europe
+4670.174,82.2,2015,France,Europe
+4921.818,82.4,2016,France,Europe
+5004.495,82.5,2017,France,Europe
+5097.228,82.6,2018,France,Europe
+5163.421,82.7,2019,France,Europe
+5453.182,82.2,2020,France,Europe
+6105.608,82.5,2021,France,Europe
+1891.248,75.7,2015,Hungary,Europe
+1999.683,76.2,2016,Hungary,Europe
+1998.62,76.0,2017,Hungary,Europe
+2106.896,76.2,2018,Hungary,Europe
+2095.186,76.5,2019,Hungary,Europe
+2421.807,75.7,2020,Hungary,Europe
+2748.683,74.5,2021,Hungary,Europe
+3794.577,80.9,2015,United Kingdom,Europe
+3940.069,81.1,2016,United Kingdom,Europe
+4038.964,81.2,2017,United Kingdom,Europe
+4188.275,81.1,2018,United Kingdom,Europe
+4389.038,81.7,2019,United Kingdom,Europe
+4997.928,80.4,2020,United Kingdom,Europe
+5466.568,80.7,2021,United Kingdom,Europe
+3733.352,82.4,2015,Iceland,Europe
+3932.095,82.0,2016,Iceland,Europe
+4111.255,82.5,2017,Iceland,Europe
+4235.661,82.8,2018,Iceland,Europe
+4318.27,82.4,2019,Iceland,Europe
+4632.283,82.6,2020,Iceland,Europe
+5106.541,82.7,2021,Iceland,Europe
+2122.934,80.7,2015,Greece,Europe
+2258.26,81.2,2016,Greece,Europe
+2250.844,80.9,2017,Greece,Europe
+2314.696,81.4,2018,Greece,Europe
+2349.574,81.2,2019,Greece,Europe
+2486.091,80.9,2020,Greece,Europe
+2736.445,80.1,2021,Greece,Europe
+1917.088,74.6,2015,Lithuania,Europe
+2097.796,74.9,2016,Lithuania,Europe
+2230.97,75.4,2017,Lithuania,Europe
+2396.809,75.7,2018,Lithuania,Europe
+2682.067,76.2,2019,Lithuania,Europe
+2878.482,75.1,2020,Lithuania,Europe
+3336.477,73.7,2021,Lithuania,Europe
+3088.931,82.5,2015,Italy,Europe
+3274.024,83.0,2016,Italy,Europe
+3376.084,82.7,2017,Italy,Europe
+3495.868,83.2,2018,Italy,Europe
+3565.324,83.6,2019,Italy,Europe
+3753.088,82.4,2020,Italy,Europe
+4042.558,82.9,2021,Italy,Europe
+4692.311,81.8,2015,Luxembourg,Europe
+4876.34,82.1,2016,Luxembourg,Europe
+4989.031,81.7,2017,Luxembourg,Europe
+5292.055,81.8,2018,Luxembourg,Europe
+5379.663,82.1,2019,Luxembourg,Europe
+5652.538,81.4,2020,Luxembourg,Europe
+6273.571,82.6,2021,Luxembourg,Europe
+1404.655,74.7,2015,Latvia,Europe
+1613.805,74.8,2016,Latvia,Europe
+1676.419,74.8,2017,Latvia,Europe
+1860.969,75.0,2018,Latvia,Europe
+2025.57,75.5,2019,Latvia,Europe
+2227.896,75.5,2020,Latvia,Europe
+3121.643,73.6,2021,Latvia,Europe
+2310.019,82.1,2015,Isreal,Asia
+2524.083,82.5,2016,Isreal,Asia
+2626.181,82.7,2017,Isreal,Asia
+2748.975,82.8,2018,Isreal,Asia
+2709.984,82.8,2019,Isreal,Asia
+2875.281,82.4,2020,Isreal,Asia
+3258.018,82.3,2021,Isreal,Asia
+1062.591,74.7,2015,Mexico,North America
+1102.809,74.4,2016,Mexico,North America
+1099.647,74.1,2017,Mexico,North America
+1122.178,74.0,2018,Mexico,North America
+1117.235,74.2,2019,Mexico,North America
+1226.606,70.1,2020,Mexico,North America
+1262.436,70.2,2021,Mexico,North America
+4927.104,81.5,2015,Netherlands,Europe
+5095.836,81.5,2016,Netherlands,Europe
+5253.774,81.7,2017,Netherlands,Europe
+5482.27,81.8,2018,Netherlands,Europe
+5643.59,82.0,2019,Netherlands,Europe
+6192.982,81.6,2020,Netherlands,Europe
+6739.052,81.7,2021,Netherlands,Europe
+1818.883,77.4,2015,Poland,Europe
+1959.094,77.8,2016,Poland,Europe
+2062.735,77.7,2017,Poland,Europe
+2106.662,77.6,2018,Poland,Europe
+2232.347,77.9,2019,Poland,Europe
+2286.109,76.9,2020,Poland,Europe
+2522.435,76.5,2021,Poland,Europe
+2635.561,81.2,2015,Portugal,Europe
+2815.177,81.2,2016,Portugal,Europe
+2906.395,81.5,2017,Portugal,Europe
+3134.128,81.4,2018,Portugal,Europe
+3223.676,81.7,2019,Portugal,Europe
+3354.909,81.1,2020,Portugal,Europe
+3829.76,81.0,2021,Portugal,Europe
+2579.281,80.8,2015,Slovenia,Europe
+2738.221,81.2,2016,Slovenia,Europe
+2832.649,81.1,2017,Slovenia,Europe
+3045.106,81.4,2018,Slovenia,Europe
+3221.895,81.6,2019,Slovenia,Europe
+3474.147,80.4,2020,Slovenia,Europe
+3884.819,80.7,2021,Slovenia,Europe
+5004.13,82.2,2015,Sweden,Europe
+5127.577,82.3,2016,Sweden,Europe
+5219.411,82.4,2017,Sweden,Europe
+5419.273,82.5,2018,Sweden,Europe
+5387.733,83.1,2019,Sweden,Europe
+5733.534,82.4,2020,Sweden,Europe
+6227.612,83.0,2021,Sweden,Europe
+2465.926,82.6,2015,Korea,Asia
+2645.637,82.9,2016,Korea,Asia
+2787.255,83.3,2017,Korea,Asia
+3067.115,83.3,2018,Korea,Asia
+3290.825,83.7,2019,Korea,Asia
+3590.183,83.6,2020,Korea,Asia
+4189.091,83.7,2021,Korea,Asia
+1040.108,76.6,2015,Türkiye,Europe
+1128.754,76.7,2016,Türkiye,Europe
+1175.655,77.1,2017,Türkiye,Europe
+1205.305,77.6,2018,Türkiye,Europe
+1231.634,77.8,2019,Türkiye,Europe
+1304.709,75.9,2020,Türkiye,Europe
+1559.535,76.0,2021,Türkiye,Europe
+9360.496,78.9,2015,United States,North America
+9722.862,78.8,2016,United States,North America
+10045.033,78.8,2017,United States,North America
+10447.293,79.0,2018,United States,North America
+10852.838,79.1,2019,United States,North America
+11915.945,77.4,2020,United States,North America
+12196.966,77.2,2021,United States,North America
+5726.877,82.3,2015,Norway,Europe
+5904.222,82.4,2016,Norway,Europe
+6234.379,82.6,2017,Norway,Europe
+6495.078,82.8,2018,Norway,Europe
+6476.378,83.0,2019,Norway,Europe
+6581.629,83.2,2020,Norway,Europe
+7042.618,83.2,2021,Norway,Europe
+4515.556,83.9,2015,Japan,Asia
+4295.858,84.1,2016,Japan,Asia
+4412.852,84.2,2017,Japan,Asia
+4554.276,84.3,2018,Japan,Asia
+4610.794,84.4,2019,Japan,Asia
+4619.518,84.7,2020,Japan,Asia
+4899.088,84.8,2021,Japan,Asia
+1833.552,79.7,2015,Chile,South America
+1941.256,80.1,2016,Chile,South America
+2119.552,80.4,2017,Chile,South America
+2281.148,80.1,2018,Chile,South America
+2296.988,80.3,2019,Chile,South America
+2417.384,79.4,2020,Chile,South America
+2677.127,78.9,2021,Chile,South America
+2605.889,78.6,2015,Czechia,Europe
+2798.379,79.0,2016,Czechia,Europe
+2969.542,79.0,2017,Czechia,Europe
+3128.523,79.0,2018,Czechia,Europe
+3272.224,79.2,2019,Czechia,Europe
+3804.101,78.6,2020,Czechia,Europe
+4302.98,77.7,2021,Czechia,Europe
+3500.719,82.0,2015,New Zealand,Oceania
+3732.589,82.1,2016,New Zealand,Oceania
+3842.325,82.2,2017,New Zealand,Oceania
+3913.078,82.4,2018,New Zealand,Oceania
+4249.593,82.6,2019,New Zealand,Oceania
+4469.383,82.7,2020,New Zealand,Oceania
+4921.245,82.5,2021,New Zealand,Oceania
