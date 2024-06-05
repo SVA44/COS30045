@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bubble Chart - vallandingham.me</title>
+  <meta name="description" content="Data Visualization Final Project">
+  <meta name="author" content="Andrew Tran">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/bubble_chart.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <select id="selectButton"></select>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="bubble_chart.html">Bubble Chart</a>
+        <a href="scatter_plot.html">Scatter Plot</a>
+        <a href="radial_chart.html">Radial Chart</a>
+    </div>
+    <div class="content">
+        <!-- Bubble Chart -->
+  <div class="container">
+    <h1>Health Expenditure by OECD countries in 2022</h1>
+    <div id="toolbar">
+      <a href="#" id="all" class="button active">All Expenditure</a>
+      <a href="#" id="continent" class="button">Expenditure by Continents</a>
+    </div>
+    <div id="vis"></div>
+    
+
+    <!-- <div class="footer">
+      <p>A demonstration of animated bubble charts in JavaScript and D3.js</p>
+      <p><a href="http://vallandingham.me/bubble_charts_in_js.html">Blog Post</a> | <a href="https://github.com/vlandham/bubble_chart">Code</a></p>
+    </div> -->
+  </div>
+
+  <script src="lib/d3.js"></script>
+  <script src="src/tooltip.js"></script>
+  <script src="src/bubble_chart.js"></script>
+
+  
+
+
+</body>
+</html>

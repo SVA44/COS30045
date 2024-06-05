@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Scatter Plot with Slider</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider@2.0.0/dist/d3-simple-slider.min.js"></script>
+    <link rel="stylesheet" href="css/ScatterPlot.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="bubble_chart.html">Bubble Chart</a>
+        <a href="scatter_plot.html">Scatter Plot</a>
+        <a href="radial_chart.html">Radial Chart</a>
+    </div>
+    <div class="content">
+    <div id="container2">
+        <div id="scatterPlot">
+            <svg width="700" height="500"></svg>
+        </div>
+        <div id="countryCheckboxes">
+            <h3 class="sticky-header">Select Countries</h3>
+            <div class="checkbox-container"></div>
+        </div>
+    </div>
+    <div id="sliderAndNote">
+        <div id="sliderContainer"></div>
+        <div id="continentNote"></div>
+    </div>
+    
+    
+    <div id="tooltip"></div>
+    <script src="src/ScatterPlot.js"></script>
+</body>
+</html>
