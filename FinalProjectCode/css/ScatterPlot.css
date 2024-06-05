@@ -12,9 +12,9 @@
 }
 
 /* Container for the scatter plot and controls */
-#scattercontainer {
+#container {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-start;
 }
 
 /* Container for the scatter plot */
@@ -24,12 +24,48 @@
 
 /* Checkbox list */
 #countryCheckboxes {
+    margin-right: 500px;
     margin-left: 20px;
     max-height: 600px; /* Adjust this value as needed */
     overflow-y: auto;  /* Enable vertical scrolling */
+    border-radius: 10px; /* Increase this value for more rounded corners */
+    border: 1px solid #000; /* Adds a solid black border */
+    padding: 10px;
+    background-color: white;
 }
-/* Slider */
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Ensure the background color matches the container's */
+    z-index: 10; /* Ensure it stays above other content */
+}
+
+.checkbox-container {
+    margin-top: 10px; /* Add some space below the header if needed */
+}
+
+#sliderAndNote {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 #sliderContainer {
-    margin: 20px;
-    margin-bottom: 100px;
+    margin-right: 20px;
 }
+
+#continentNote {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.color-box {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
