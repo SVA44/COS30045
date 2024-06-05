@@ -3,8 +3,8 @@
     position: absolute;
     text-align: center;
     padding: 8px;
-    font: 12px sans-serif;
-    background: lightsteelblue;
+    font: 20px sans-serif;
+    background: white;
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
@@ -12,7 +12,7 @@
 }
 
 /* Container for the scatter plot and controls */
-#container {
+#container2 {
     display: flex;
     align-items: flex-start;
 }
