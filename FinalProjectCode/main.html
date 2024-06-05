@@ -2,101 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <title>D3 Scatter Plot with Slider</title> -->
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    
-    <script src=https://unpkg.com/d3-simple-slider@2.0.0/dist/d3-simple-slider.min.js></script>
-    <link rel="stylesheet" href="css/ScatterPlot.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="src/radialChart.js"></script>
-    <link rel="stylesheet" href="css/radialChart.css">
-    <meta charset="utf-8">
-    <!-- <title>Bubble Chart - vallandingham.me</title> -->
-    <meta name="description" content="Data Visualization Final Project">
-    <!-- <meta name="author" content="Andrew Tran"> -->
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/bubble_chart.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <select id="selectButton"></select>
-    <style>
-    p {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            color: #333;
-            padding-left: 20px;
-            padding-bottom:100px;
-            padding-top:20px;
-            line-height: 1.6;   
-            text-align: justify;
-    }
-
-    h2 {
-      padding-top: 100px;
-      padding-left: 20px
-    }
-
-    </style>
+    <title>Data Visualization Final Project</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Bubble Chart -->
-    <div class="bubblecontainer">
-        <h1>Health Expenditure by OECD countries in 2022</h1>
-        <div id="toolbar">
-          <a href="#" id="all" class="button active">All Expenditure</a>
-          <a href="#" id="continent" class="button">Expenditure by Continents</a>
-        </div>
-        <div id="vis"></div>   
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="bubble_chart.html">Bubble Chart</a>
+        <a href="scatter_plot.html">Scatter Plot</a>
+        <a href="radial_chart.html">Radial Chart</a>
     </div>
-    
-    <script src="lib/d3.js"></script>
-    <script src="src/tooltip.js"></script>
-    <script src="src/bubble_chart.js"></script>
-      
-    <h2>About</h2>
-
-    <p>Health expenditure is an indicator of how commited each country is towards healthcare provision, 
-        demonstrating the resources they allocate to <br> guarantee the welfare of their populations. 
-        Dive into the world of healthcare spending with this interactive bubble chart showcasing OECD countries <br>  in 2022. Hover over 
-        each bubble to reveal in-depth information, tap 
-        into the filter button to highlight specific countries, or drag and drop to explore <br> the data your way. Click through 
-        different windows to unlock new visualizations and reveal a wealth of insights waiting to be discovered!
-    
-    <!-- Scatterplot Chart -->
-    <div id="container">
-            <script src="https://d3js.org/d3.v6.min.js"></script>
-            <script src="https://unpkg.com/d3-simple-slider@2.0.0/dist/d3-simple-slider.min.js"></script>
-            <link rel="stylesheet" href="ScatterPlot.css">
-        <div id="scatterPlot">
-            <svg width="700" height="500"></svg>
-        </div>
-        <div id="countryCheckboxes">
-            <h3 class="sticky-header">Select Countries</h3>
-            <div class="checkbox-container"></div>
-        </div>
+    <div class="content">
+        <h1>Welcome to the Data Visualization Project</h1>
+        <p>Explore various visualizations of health expenditure by OECD countries in 2022.</p>
     </div>
-    <div id="sliderAndNote">
-        <div id="sliderContainer"></div>
-        <div id="continentNote"></div>
-    </div>
-    
-    
-    <div id="tooltip"></div>
-    <script src="ScatterPlot.js"></script>
-    </div>
-    
-    <!-- Radial Spider Chart -->
-    <div id="radialcontainer">
-        <script src="https://d3js.org/d3.v6.min.js"></script>
-        <div id="tooltip"></div>
-        <script src="src/ScatterPlot.js"></script>
-
-        <select id="dropdown"></select>
-        <div id ='radar'>
-            <p id="radialChart"></p>
-    </div>
-    </div>
-    
 </body>
 </html>
