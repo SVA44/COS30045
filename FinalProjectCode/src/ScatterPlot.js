@@ -1,7 +1,7 @@
 // Set the dimensions and margins of the graph
 var margin = {top: 60, right: 50, bottom: 40, left: 40},
     width = 1200 - margin.left - margin.right,
-    height = 800     - margin.top - margin.bottom;
+    height = 700 - margin.top - margin.bottom;
 
 // Append the SVG object to the body of the page
 var svg = d3.select("svg")
@@ -11,8 +11,8 @@ var svg = d3.select("svg")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Set the fixed domain for the axes
-var xDomain = [0, 12000]; // Adjust these values as needed
-var yDomain = [70, 90];   // Adjust these values as needed
+var xDomain = [0, 12000]; 
+var yDomain = [70, 90];   
 
 // Scales
 var x = d3.scaleLinear()
@@ -22,6 +22,11 @@ var x = d3.scaleLinear()
 var y = d3.scaleLinear()
     .domain(yDomain)
     .range([height, 0]);
+
+// Color scale
+var color = d3.scaleOrdinal()
+    .domain(["Africa", "Asia", "Europe", "North America", "Oceania", "South America"])
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]);
 
 // Axes
 var xAxis = svg.append("g")
@@ -45,25 +50,37 @@ function update(data) {
         .append("circle")
         .attr("cx", d => x(d.Value))
         .attr("cy", d => y(d.LifeExpectancy))
-        .attr("r", 7)
-        .style("fill", "blue")
-        .style("opacity", 0.7)
+        .attr("r", 10)
+        .style("fill", d => color(d.Continent))
+        .style("opacity", 1)
         .on("mouseover", function(event, d) {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
-            tooltip.html(`${d.Country}<br>Health Expenditure per capita: ${d.Value}<br>Life Expectancy: ${d.LifeExpectancy}`)
+            tooltip.html(`${d.Country}<br>Health Expenditure per capita: ${d.Value}<br>Life Expectancy: ${d.LifeExpectancy}<br>Continent: ${d.Continent}`)
                 .style("left", (event.pageX + 5) + "px")
                 .style("top", (event.pageY - 28) + "px");
+                            // Dim other circles
+            svg.selectAll("circle")
+            .filter(e => e !== d)
+            .transition()
+            .style("fill", "gray")
+            .style("opacity", 0.3);
         })
-        .on("mousemove", function(event, d) {
+        .on("mousemove", function (event, d) {
             tooltip.style("left", (event.pageX + 5) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function (event, d) {
             tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
+
+            // Reset opacity of all circles
+            svg.selectAll("circle")
+                .transition()
+                .style("fill", d => color(d.Continent))
+                .style("opacity", 1);
         })
         .merge(circles)
         .transition()
@@ -116,17 +133,24 @@ function update(data) {
 }
 
 // Load data and initialize plot
-d3.csv("data/final_data.csv").then(data => {
-    // Initial plot for the first year
-    console.log(data)
-    var initialYear = 2015;
-    var filteredData = data.filter(d => +d.Year === initialYear);
+d3.csv("last_data.csv").then(data => {
+    // Ensure the data has the required fields
+    data.forEach(d => {
+        d.Year = +d.Year;
+        d.Value = +d.Value;
+        d.LifeExpectancy = +d.LifeExpectancy;
+    });
 
-    // Get unique list of countries
+    // Initial plot for the first year
+    var initialYear = 2015;
+    var filteredData = data.filter(d => d.Year === initialYear);
+
+    // Get unique list of countries and continents
     var countries = Array.from(new Set(data.map(d => d.Country)));
+    var continents = Array.from(new Set(data.map(d => d.Continent)));
 
     // Create checkboxes for each country
-    var checkboxes = d3.select("#countryCheckboxes")
+    var checkboxes = d3.select(".checkbox-container")
         .selectAll("div")
         .data(countries)
         .enter()
@@ -150,7 +174,7 @@ d3.csv("data/final_data.csv").then(data => {
         .min(d3.min(data, d => d.Year))
         .max(d3.max(data, d => d.Year))
         .step(1)
-        .width(300)
+        .width(500)
         .tickFormat(d3.format("d"))
         .ticks(5)
         .default(initialYear)
@@ -159,16 +183,25 @@ d3.csv("data/final_data.csv").then(data => {
             updateFilteredData();
         });
 
-    var gSlider = d3.select('div#sliderContainer')
+    var gSlider = d3.select('#sliderContainer')
         .append('svg')
-        .attr('width', 400)
+        .attr('width', 700)
         .attr('height', 100)
         .append('g')
         .attr('transform', 'translate(30,30)');
 
     gSlider.call(slider);
 
-    // Function to update filtered data based on selected year and countries
+    // Create a note for each continent
+    var continentNote = d3.select("#continentNote");
+
+    continents.forEach(continent => {
+        continentNote.append("div")
+            .html(`<div class="color-box" style="background-color:${color(continent)};"></div>${continent}`);
+    });
+
+
+    // Function to update filtered data based on selected year, countries, and continent
     function updateFilteredData() {
         var selectedYear = slider.value();
         var selectedCountries = checkboxes.selectAll("input")
@@ -180,10 +213,12 @@ d3.csv("data/final_data.csv").then(data => {
             selectedCountries = countries;
         }
 
-        var filteredData = data.filter(d => +d.Year === selectedYear && selectedCountries.includes(d.Country));
+        var filteredData = data.filter(d => d.Year === selectedYear && selectedCountries.includes(d.Country));
+        
         update(filteredData);
     }
 
     // Initial plot
     update(filteredData);
 });
+
