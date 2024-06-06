@@ -6,7 +6,7 @@ body {
 
 .navbar {
     overflow: hidden;
-    background-color: #333;
+    background-color: #E0F7FA;
     position: fixed;
     top: 0;
     width: 100%;
@@ -15,21 +15,22 @@ body {
 
 .navbar a {
     float: left;
+    width: 23%;
     display: block;
-    color: #f2f2f2;
+    color: #0D47A1;
     text-align: center;
-    padding: 14px 30px;
+    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 }
 
 .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #0D47A1;
+    color: #E0F7FA;
 }
 
 .content {
-    padding: 30px;
+    padding: 20px;
     padding-top: 60px; /* Ensure enough space for the fixed navbar */
 }
 
@@ -37,7 +38,7 @@ body {
     padding-top: 80px; /* Ensure enough space for the fixed navbar */
 }
 
-#selectButton {
+#selectButton { 
     margin-top: 40px; /* Add some margin to separate from other elements */
     margin-right: 500px;
 }
