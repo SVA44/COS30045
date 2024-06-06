@@ -19,16 +19,16 @@
 
 /* Container for the scatter plot */
 #scatterPlot {
-    flex-grow: 1;
+    flex-grow: 3;
 }
 
 /* Checkbox list */
 #countryCheckboxes {
-    margin-right: 500px;
+    flex-grow: 1;
     margin-left: 20px;
-    max-height: 600px; /* Adjust this value as needed */
+    max-height: 600px; 
     overflow-y: auto;  /* Enable vertical scrolling */
-    border-radius: 10px; /* Increase this value for more rounded corners */
+    border-radius: 10px; 
     border: 1px solid #000; /* Adds a solid black border */
     padding: 10px;
     background-color: white;
