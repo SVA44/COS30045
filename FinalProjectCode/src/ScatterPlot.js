@@ -1,7 +1,7 @@
 // Set the dimensions and margins of the graph
 var margin = {top: 60, right: 50, bottom: 40, left: 40},
-    width = 1200 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+    width = window.innerWidth*2/3 - margin.left - margin.right,
+    height = window.innerHeight*2/3 - margin.top - margin.bottom;
 
 // Append the SVG object to the body of the page
 var svg = d3.select("svg")
@@ -90,16 +90,6 @@ function update(data) {
     // Remove old data
     circles.exit().remove();
 
-    // Update title
-    svg.selectAll("text.title").remove();
-    svg.append("text")
-        .attr("class", "title")
-        .attr("x", width / 2)
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")
-        .style("font-size", "30px")
-        .text(`Life expectancy vs Health Expenditure, ${data[0].Year}`);
-    
     // Remove old milestone lines
     svg.selectAll("line.milestone").remove();
 
