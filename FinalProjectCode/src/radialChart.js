@@ -142,14 +142,6 @@ function init() {
                         .attr("fill", (d) => myColor(d.Country))
                         .attr("stroke-opacity", 1)
                         .attr("opacity", 0.5) 
-        // Add title
-        svg.append("text")
-            .attr("x", (width / 2))             
-            .attr("y", - (margin.top / 2))
-            .attr("text-anchor", "middle")  
-            .style("font-size", "25px") 
-            .style("text-decoration", "bold")  
-            .text("OECD Countries Health Expenditures by health functions");
 
         // Update the chart
         function update(selectedOption) {
