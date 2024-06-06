@@ -133,7 +133,7 @@ function update(data) {
 }
 
 // Load data and initialize plot
-d3.csv("last_data.csv").then(data => {
+d3.csv("data/last_data.csv").then(data => {
     // Ensure the data has the required fields
     data.forEach(d => {
         d.Year = +d.Year;
