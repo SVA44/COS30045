@@ -15,7 +15,6 @@ body {
 
 .navbar a {
     float: left;
-    width: 23%;
     display: block;
     color: #0D47A1;
     text-align: center;
@@ -38,7 +37,7 @@ body {
     padding-top: 80px; /* Ensure enough space for the fixed navbar */
 }
 
-#selectButton { 
+#selectButton {
     margin-top: 40px; /* Add some margin to separate from other elements */
     margin-right: 500px;
 }
