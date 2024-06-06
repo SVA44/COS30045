@@ -29,7 +29,7 @@ body {
 }
 
 .content {
-    padding: 20px;
+    padding: 30px;
     padding-top: 60px; /* Ensure enough space for the fixed navbar */
 }
 
