@@ -36,6 +36,22 @@ var xAxis = svg.append("g")
 var yAxis = svg.append("g")
     .call(d3.axisLeft(y));
 
+// X-axis label
+svg.append("text")
+    .attr("transform", `translate(${width / 2},${height + margin.top - 25})`)
+    .style("text-anchor", "middle")
+    .text("Health Expenditure per capita($)");
+
+// Y-axis label
+svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x", 0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Life Expectancy(years)");
+
+
 // Create a tooltip div that is hidden by default
 var tooltip = d3.select("#tooltip");
 
@@ -57,7 +73,7 @@ function update(data) {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
-            tooltip.html(`${d.Country}<br>Health Expenditure per capita: ${d.Value}<br>Life Expectancy: ${d.LifeExpectancy}<br>Continent: ${d.Continent}`)
+            tooltip.html(`${d.Country}<br>Health Expenditure per capita:$${d.Value}<br>Life Expectancy: ${d.LifeExpectancy} years<br>Continent: ${d.Continent}`)
                 .style("left", (event.pageX + 5) + "px")
                 .style("top", (event.pageY - 28) + "px");
                             // Dim other circles
